@@ -3,7 +3,9 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        withMaven(publisherStrategy: 'EXPLICIT')
+        withMaven(publisherStrategy: 'EXPLICIT') {
+          sh "pwd"
+        }
       }
     }
   }

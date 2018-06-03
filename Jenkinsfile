@@ -8,5 +8,22 @@ pipeline {
         }
       }
     }
+
+    stage('Integration test') {
+      steps {
+        withMaven(publisherStrategy: 'EXPLICIT') {
+          sh "./mvnw clean install"
+        }
+      }
+    }
+
+    stage('Release') {
+      steps {
+        withMaven(publisherStrategy: 'EXPLICIT') {
+          sh "./mvnw clean install"
+        }
+      }
+    }
+
   }
 }

@@ -14,7 +14,7 @@ pipeline {
             jdk: 'jdk8') {
 
           echo "M2_HOME = ${M2_HOME}"
-          sh "mvn clean install"
+          sh "${M2_HOME}/bin/mvn clean install"
         }
       }
     }
@@ -22,7 +22,7 @@ pipeline {
     stage('Integration test') {
       steps {
         withMaven(publisherStrategy: 'EXPLICIT') {
-          sh "mvn clean install"
+          sh "${M2_HOME}/bin/mvn clean install"
         }
       }
     }
@@ -30,7 +30,7 @@ pipeline {
     stage('Release') {
       steps {
         withMaven(publisherStrategy: 'EXPLICIT') {
-          sh "mvn clean install"
+          sh "${M2_HOME}/bin/mvn clean install"
         }
       }
     }

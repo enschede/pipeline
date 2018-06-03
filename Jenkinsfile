@@ -12,7 +12,7 @@ pipeline {
         withMaven(publisherStrategy: 'EXPLICIT',
             maven: 'M3.5',
             jdk: 'jdk8') {
-          sh "./mvnw clean install"
+          sh "mvn clean install"
         }
       }
     }
@@ -20,7 +20,7 @@ pipeline {
     stage('Integration test') {
       steps {
         withMaven(publisherStrategy: 'EXPLICIT') {
-          sh "./mvnw clean install"
+          sh "mvn clean install"
         }
       }
     }
@@ -28,7 +28,7 @@ pipeline {
     stage('Release') {
       steps {
         withMaven(publisherStrategy: 'EXPLICIT') {
-          sh "./mvnw clean install"
+          sh "mvn clean install"
         }
       }
     }

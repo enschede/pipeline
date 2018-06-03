@@ -2,6 +2,7 @@ pipeline {
     agent any
 
     environment {
+        MYENV = 'Hello Pipeline Hacker'
         GITHUB = credentials('github')
      }
 
@@ -21,6 +22,7 @@ pipeline {
             steps {
                 echo 'Deploy'
                 echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
+                echo "Github =  ${env.MYENV}"
                 echo "Github =  ${env.GITHUB}"
                 echo "Github =  ${env.GITHUB_USR}"
                 echo "Github =  ${env.GITHUB_PSW}"

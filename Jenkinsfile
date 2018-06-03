@@ -4,7 +4,7 @@ pipeline {
     stage('Build') {
       steps {
         withMaven(publisherStrategy: 'EXPLICIT') {
-          sh "pwd"
+          sh "mvn clean install"
         }
       }
     }

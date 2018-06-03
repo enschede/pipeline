@@ -6,7 +6,7 @@ pipeline {
     }
 
     tools{
-        maven 'maven 3'
+        maven 'Maven 3'
         //jdk 'java 8'
     }
 

@@ -11,12 +11,6 @@ pipeline {
         //jdk 'java 8'
     }
 
-    node {
-        def mvnHome = tool 'M3'
-        echo "${mvnHome}/bin/mvn -B verify"
-    }
-
-
     stages {
         stage('Build') {
             steps {
@@ -57,6 +51,11 @@ pipeline {
 
 
             steps {
+                node {
+                    def mvnHome = tool 'M3'
+                    echo "${mvnHome}/bin/mvn -B verify"
+                }
+
                 echo 'Maven'
             }
         }

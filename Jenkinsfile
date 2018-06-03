@@ -11,6 +11,12 @@ pipeline {
         //jdk 'java 8'
     }
 
+    node {
+        def mvnHome = tool 'M3'
+        echo "${mvnHome}/bin/mvn -B verify"
+    }
+
+
     stages {
         stage('Build') {
             steps {
@@ -49,11 +55,6 @@ pipeline {
 
             //} // withMaven will discover the generated Maven artifacts, JUnit Surefire & FailSafe & FindBugs reports...
 
-
-            node {
-                def mvnHome = tool 'M3'
-                echo "${mvnHome}/bin/mvn -B verify"
-            }
 
             steps {
                 echo 'Maven'

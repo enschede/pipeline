@@ -4,7 +4,7 @@ pipeline {
     stage('Build') {
       steps {
         withMaven(publisherStrategy: 'EXPLICIT') {
-          sh "mvn clean install"
+          sh "./mvnw clean install"
         }
       }
     }

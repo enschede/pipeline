@@ -13,7 +13,7 @@ class PipelineApplication {
 
     @GetMapping("/hello")
     fun rootGet(): String {
-        return "Hello hackers!
+        return "Hello hackers!"
     }
 }
 

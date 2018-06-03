@@ -1,10 +1,11 @@
 pipeline {
   agent any
+
   stages {
     stage('Build') {
       steps {
-        withMaven(publisherStrategy: 'EXPLICIT',
-            jdk: 'jdk8') {
+        withMaven(publisherStrategy: 'EXPLICIT') {
+
           sh "./mvnw clean install"
         }
       }

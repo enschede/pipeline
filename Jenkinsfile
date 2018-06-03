@@ -3,7 +3,6 @@ pipeline {
 
     environment {
         MYENV = 'Hello Pipeline Hacker'
-        GITHUB = credentials('github')
      }
 
 
@@ -19,6 +18,10 @@ pipeline {
             }
         }
         stage('Deploy') {
+            environment {
+                GITHUB = credentials('github')
+            }
+
             steps {
                 echo 'Deploy'
                 echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
@@ -28,5 +31,14 @@ pipeline {
                 echo "Github =  ${env.GITHUB_PSW}"
             }
         }
+        stage('Back-end') {
+            agent {
+                docker { image 'maven:3-alpine' }
+            }
+            steps {
+                sh 'mvn --version'
+            }
+        }
+
     }
 }

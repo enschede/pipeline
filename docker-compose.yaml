@@ -12,6 +12,17 @@ services:
     networks:
       - buildnet
 
+  blue:
+    image: jenkinsci/blueocean
+    container_name: blue
+#    volumes:
+#      - jenkins_data:/var/jenkins_home
+    ports:
+#      - 50000:50000
+      - 9004:8080
+    networks:
+      - buildnet
+
   artifactory:
     image: docker.bintray.io/jfrog/artifactory-oss:5.8.4
     container_name: artifactory

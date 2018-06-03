@@ -12,6 +12,8 @@ pipeline {
         withMaven(publisherStrategy: 'EXPLICIT',
             maven: 'M3.5',
             jdk: 'jdk8') {
+
+          echo "M2_HOME = ${M2_HOME}"
           sh "mvn clean install"
         }
       }

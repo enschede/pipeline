@@ -1,21 +1,12 @@
 pipeline {
   agent any
 
-  tools {
-    jdk 'jdk8'
-    maven 'M3.5'
-  }
-
   stages {
     stage('Build') {
       steps {
-        withMaven(publisherStrategy: 'EXPLICIT',
-            maven: 'M3.5',
-            jdk: 'jdk8') {
+        withMaven(publisherStrategy: 'EXPLICIT') {
 
-          echo "M2_HOME = ${M2_HOME}"
-          echo "PATH = ${PATH}"
-          sh "${M2_HOME}/bin/mvn clean install"
+          sh "./mvnw clean install"
         }
       }
     }
@@ -23,7 +14,7 @@ pipeline {
     stage('Integration test') {
       steps {
         withMaven(publisherStrategy: 'EXPLICIT') {
-          sh "${M2_HOME}/bin/mvn clean install"
+          sh "./mvnw clean install"
         }
       }
     }
@@ -31,7 +22,7 @@ pipeline {
     stage('Release') {
       steps {
         withMaven(publisherStrategy: 'EXPLICIT') {
-          sh "${M2_HOME}/bin/mvn clean install"
+          sh "./mvnw clean install"
         }
       }
     }

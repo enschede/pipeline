@@ -14,6 +14,7 @@ pipeline {
             jdk: 'jdk8') {
 
           echo "M2_HOME = ${M2_HOME}"
+          echo "PATH = ${PATH}"
           sh "${M2_HOME}/bin/mvn clean install"
         }
       }

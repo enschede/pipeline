@@ -38,26 +38,26 @@ pipeline {
         }
         stage('Maven') {
             // Maven installation declared in the Jenkins "Global Tool Configuration"
-            //withMaven(maven: 'M3') {
+            withMaven(maven: 'M3') {
 
                 // Maven settings.xml file defined with the Jenkins Config File Provider Plugin
                 // Maven settings and global settings can also be defined in Jenkins Global Tools Configuration
 
 
               // Run the maven build
-              //sh "mvn clean install"
+              sh "mvn clean install"
 
-            //} // withMaven will discover the generated Maven artifacts, JUnit Surefire & FailSafe & FindBugs reports...
+            } // withMaven will discover the generated Maven artifacts, JUnit Surefire & FailSafe & FindBugs reports...
 
 
-            steps {
-                node {
-                    def mvnHome = tool 'M3'
-                    echo "${mvnHome}/bin/mvn -B verify"
-                }
+//            steps {
+//                node {
+//                    def mvnHome = tool 'M3'
+//                    echo "${mvnHome}/bin/mvn -B verify"
+//                }
 
-                echo 'Maven'
-            }
+//                echo 'Maven'
+//            }
         }
     }
 }

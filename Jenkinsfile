@@ -49,7 +49,11 @@ pipeline {
 
             //} // withMaven will discover the generated Maven artifacts, JUnit Surefire & FailSafe & FindBugs reports...
 
+
+
             steps {
+                def mvnHome = tool 'M3'
+                echo "${mvnHome}/bin/mvn -B verify"
                 echo 'Maven'
             }
         }

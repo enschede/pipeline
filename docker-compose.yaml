@@ -1,0 +1,44 @@
+version: '3.6'
+
+services:
+  jenkins:
+    image: jenkins/jenkins
+    container_name: jenkins
+    volumes:
+      - jenkins_data:/var/jenkins_home
+    ports:
+      - 50000:50000
+      - 9003:8080
+    networks:
+      - buildnet
+
+  artifactory:
+    image: docker.bintray.io/jfrog/artifactory-oss:5.8.4
+    container_name: artifactory
+    ports:
+      - 9002:8081
+    networks:
+      - buildnet
+    volumes:
+      - artifactory_data:/var/opt/jfrog/artifactory
+#    Add extra Java options by uncommenting the following lines
+#    environment:
+#     - EXTRA_JAVA_OPTIONS=-Xmx4g
+    restart: always
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 32000
+        hard: 40000
+
+
+volumes:
+  jenkins_data:
+#    external:
+#      name: jenkins_data
+  artifactory_data:
+#    external:
+#      name: artifactory_data
+
+networks:
+  buildnet:

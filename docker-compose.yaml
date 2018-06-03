@@ -2,24 +2,13 @@ version: '3.6'
 
 services:
   jenkins:
-    image: jenkins/jenkins
+    image: jenkinsci/blueocean
     container_name: jenkins
     volumes:
       - jenkins_data:/var/jenkins_home
     ports:
-      - 50000:50000
-      - 9003:8080
-    networks:
-      - buildnet
-
-  blue:
-    image: jenkinsci/blueocean
-    container_name: blue
-#    volumes:
-#      - jenkins_data:/var/jenkins_home
-    ports:
 #      - 50000:50000
-      - 9004:8080
+      - 9003:8080
     networks:
       - buildnet
 

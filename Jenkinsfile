@@ -3,29 +3,32 @@ pipeline {
 
   stages {
     stage('Build') {
-      steps {
-        withMaven(publisherStrategy: 'EXPLICIT') {
+       steps {
+         withMaven(publisherStrategy: 'EXPLICIT') {
 
-          sh "./mvnw clean install"
-        }
-      }
-    }
+           sh "./mvnw clean install"
+         }
+       }
+     }
 
-    stage('Integration test') {
-      steps {
-        withMaven(publisherStrategy: 'EXPLICIT') {
-          sh "./mvnw clean install"
-        }
-      }
-    }
+     stage('Integration test') {
+       steps {
+         withMaven(publisherStrategy: 'EXPLICIT') {
+           sh "./mvnw clean install"
+         }
+       }
+     }
 
-    stage('Release') {
-      steps {
-        withMaven(publisherStrategy: 'EXPLICIT') {
-          sh "./mvnw clean install"
-        }
-      }
-    }
+     stage('Release') {
+       when {
+         branch 'master'
+       }
+       steps {
+         withMaven(publisherStrategy: 'EXPLICIT') {
+           sh "./mvnw clean install"
+         }
+       }
+     }
 
-  }
-}
+   }
+ }

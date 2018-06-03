@@ -31,14 +31,10 @@ pipeline {
                 echo "Github =  ${env.GITHUB_PSW}"
             }
         }
-        stage('Back-end') {
-            agent {
-                docker { image 'maven:3-alpine' }
-            }
+        stage('Maven') {
             steps {
-                sh 'mvn --version'
+                sh 'mvn clean install'
             }
         }
-
     }
 }

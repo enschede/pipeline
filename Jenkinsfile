@@ -3,7 +3,8 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        withMaven(publisherStrategy: 'EXPLICIT') {
+        withMaven(publisherStrategy: 'EXPLICIT',
+            jdk: 'jdk8') {
           sh "./mvnw clean install"
         }
       }

@@ -17,7 +17,6 @@ pipeline {
       }
     }
 
-
     stage('Release') {
       steps {
         withMaven(publisherStrategy: 'EXPLICIT') {
